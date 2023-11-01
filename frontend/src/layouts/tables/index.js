@@ -80,7 +80,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Projects Table
+                  City Wise Analyis
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

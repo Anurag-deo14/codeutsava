@@ -23,21 +23,60 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import AC from "./apex";
+import Radar from "./radar";
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
+  const [serverData, setServerData] = useState({});
 
+  async function fetchData() {
+    try {
+      // Replace 'http://localhost:5000' with your Flask server URL and route.
+      const response = await axios.get("http://localhost:5000/optimize");
+      console.log(response.data);
+      setServerData(response.data);
+    } catch (error) {
+      console.error("Error fetching data from the server:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+  // For Low variant
+  const ChennaiLow = serverData.capacity ? serverData.capacity.Low.Chennai : 0;
+  const DelhiLow = serverData.capacity ? serverData.capacity.Low.Delhi : 0;
+  const NagpurLow = serverData.capacity ? serverData.capacity.Low.Nagpur : 0;
+  const RaipurLow = serverData.capacity ? serverData.capacity.Low.Raipur : 0;
+  const MumbaiLow = serverData.capacity ? serverData.capacity.Low.Mumbai : 0;
+
+  // For High variant
+  const ChennaiHigh = serverData.capacity ? serverData.capacity.High.Chennai : 0;
+  const DelhiHigh = serverData.capacity ? serverData.capacity.High.Delhi : 0;
+  const NagpurHigh = serverData.capacity ? serverData.capacity.High.Nagpur : 0;
+  const RaipurHigh = serverData.capacity ? serverData.capacity.High.Raipur : 0;
+  const MumbaiHigh = serverData.capacity ? serverData.capacity.High.Mumbai : 0;
+
+  const sumL = ChennaiLow + DelhiLow + NagpurLow + RaipurLow + MumbaiLow;
+  const sumH = ChennaiHigh + DelhiHigh + NagpurHigh + RaipurHigh + MumbaiHigh;
+  const sumT = sumL + sumH;
+  const la = Math.ceil(serverData.total ? serverData.total : 0);
+  const ln = la.toLocaleString();
+  const CL = serverData.plot ? serverData.plot.Low["0"] : 0;
+
+  console.log(CL);
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -47,9 +86,9 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="weekend"
-                title="Bookings"
-                count={281}
+                icon="paid"
+                title="Total Estimated Cost"
+                count={ln}
                 percentage={{
                   color: "success",
                   amount: "+55%",
@@ -61,9 +100,9 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Today's Users"
-                count="2,300"
+                icon="south"
+                title="Low Production Area"
+                count={sumL}
                 percentage={{
                   color: "success",
                   amount: "+3%",
@@ -76,9 +115,9 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="store"
-                title="Revenue"
-                count="34k"
+                icon="north"
+                title="High Production Area"
+                count={sumH}
                 percentage={{
                   color: "success",
                   amount: "+1%",
@@ -91,9 +130,9 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="primary"
-                icon="person_add"
-                title="Followers"
-                count="+91"
+                icon="verified"
+                title="Total Production Area"
+                count={sumT}
                 percentage={{
                   color: "success",
                   amount: "",
@@ -107,28 +146,12 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsBarChart
-                  color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
-                />
+                <AC />
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsLineChart
-                  color="success"
-                  title="daily sales"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
-                  }
-                  date="updated 4 min ago"
-                  chart={sales}
-                />
+                <Radar />
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>

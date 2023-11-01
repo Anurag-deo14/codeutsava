@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify, send_from_directory
 import pandas as pd
 from pulp import *
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def base():
@@ -92,6 +94,7 @@ def optimize_supply_chain():
 
     # Solve Model
     model.solve()
+    total_money = value(model.objective)
     print("Total Costs = {:,} (₹/Month)".format(int(value(model.objective))))
     print('\n' + "Status: {}".format(LpStatus[model.status]))
 
@@ -171,7 +174,8 @@ def optimize_supply_chain():
     results = {
         "capacity": df_capacity.to_dict(),
         "production": df_production.to_dict(),
-        "plot": df_plot.to_dict()
+        "plot": df_plot.to_dict(),
+        "total": total_money
         }
 
     return jsonify(results)
