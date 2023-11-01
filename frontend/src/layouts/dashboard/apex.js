@@ -89,7 +89,7 @@ const ApexChart = () => {
       colors: ["#fff"],
     },
     title: {
-      text: "Production",
+      text: "Production Distribution",
     },
     xaxis: {
       categories: ["Delhi", "Chennai", "Mumbai", "Nagpur", "Raipur"],
