@@ -1,21 +1,17 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory,send_file, render_template
 import pandas as pd
 from pulp import *
 import os
 from flask_cors import CORS
 import random
+import networkx as nx
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+import io
+import base64
 
 app = Flask(__name__)
 CORS(app)
-
-@app.route("/")
-def base():
-    return send_from_directory('../frontend/public', 'index.html')
-
-# Path for all the static files (compiled JS/CSS, etc.)
-@app.route("/<path:path>")
-def home(path):
-    return send_from_directory('client/public', path)
 
 @app.route('/optimize', methods=['GET'])
 def optimize_supply_chain():
@@ -193,6 +189,48 @@ def get_city_data():
         city_data[city_name] = random_value
 
     return jsonify(city_data)
+
+def create_random_graph():
+    G = nx.Graph()
+    for i in range(20):
+        for j in range(i + 1, 20):
+            if random.random() < 0.3:
+                weight = random.randint(1, 10)
+                G.add_edge(i, j, weight=weight)
+    return G
+
+# Global variable to store the graph
+graph = create_random_graph()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/shortest_path', methods=['POST'])
+def shortest_path():
+    start_node = int(request.form.get('start_node'))
+    end_node = int(request.form.get('end_node'))
+    
+    shortest_path = nx.shortest_path(graph, source=start_node, target=end_node)
+    return jsonify({'shortest_path': shortest_path})
+def generate_graph_image(G):
+    pos = nx.spring_layout(G)  # You can choose a layout algorithm that suits your graph
+    labels = nx.get_edge_attributes(G, 'weight')
+    edge_labels = {k: v for k, v in labels.items()}
+    
+    fig, ax = plt.subplots(figsize=(10, 10))
+    nx.draw(G, pos, with_labels=True, node_size=1000, font_size=10, font_color='black', node_color='lightblue', font_weight='bold', ax=ax)
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, ax=ax)
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    plt.close()
+    
+    return base64.b64encode(buf.getvalue()).decode('utf-8')
+@app.route('/generate_graph', methods=['GET'])
+def generate_graph():
+    image_data = generate_graph_image(graph)
+    return jsonify({'graph': image_data})
 
 if __name__ == '__main__':
     app.run(debug=True)

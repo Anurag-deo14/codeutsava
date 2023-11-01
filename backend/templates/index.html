@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shortest Path Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #3caea3;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .dropdowns {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .dropdowns select {
+            padding: 10px;
+            border: 2px solid #3caea3;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff;
+            color: #3caea3;
+        }
+
+        .dropdowns input[type="submit"] {
+            background-color: #3caea3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dropdowns input[type="submit"]:hover {
+            background-color: #2b8073; /* Darker green on hover */
+        }
+
+        .shortest-path-result {
+            text-align: center;
+            margin-top: 20px;
+            color: #3caea3;
+        }
+
+        .graph-container {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .graph-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shortest Path Finder</h1>
+    <div class="container">
+        <div class="form-container">
+            <form id="path-form">
+                <div class="dropdowns">
+                    <label for="start_node">Start Node:</label>
+                    <select id="start_node" name="start_node">
+                        {% for node in range(20) %}
+                            <option value="{{ node }}">{{ node }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="dropdowns">
+                    <label for="end_node">End Node:</label>
+                    <select id="end_node" name="end_node">
+                        {% for node in range(20) %}
+                            <option value="{{ node }}">{{ node }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Find Shortest Path">
+            </form>
+            <div class="shortest-path-result" id="shortest-path-result"></div>
+        </div>
+        <div class="graph-container" id="graph-container"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $.get('/generate_graph', function (data) {
+    var image_data = data.graph;
+    var imageElement = document.createElement('img');
+    imageElement.src = 'data:image/png;base64,' + image_data;
+    imageElement.classList.add('graph-image'); // Add a CSS class for styling
+    $('#graph-container').html(imageElement);
+});
+        $(document).ready(function () {
+            $('#path-form').submit(function (e) {
+                e.preventDefault();
+                var start_node = $('#start_node').val();
+                var end_node = $('#end_node').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/shortest_path',
+                    data: { start_node: start_node, end_node: end_node },
+                    success: function (data) {
+                        var shortest_path = data.shortest_path.join(' &rarr; ');
+                        $('#shortest-path-result').html('Shortest Path: ' + shortest_path);
+                    }
+                });
+            });
+
+            $.getScript('https://cdn.rawgit.com/cytoscape/cytoscape.js/v3.16.0/dist/cytoscape.min.js', function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/generate_graph',
+                    success: function (data) {
+                        var graphData = data.graph;
+                        var cy = cytoscape({
+                            container: document.getElementById('graph-container'),
+                            layout: { name: 'grid' },
+                            elements: graphData,
+                            style: [
+                                {
+                                    selector: 'node',
+                                    style: {
+                                        'background-color': '#666',
+                                        'label': 'data(id)'
+                                    }
+                                },
+                                {
+                                    selector: 'edge',
+                                    style: {
+                                        'width': 3,
+                                        'line-color': '#ccc',
+                                        'target-arrow-color': '#ccc',
+                                        'target-arrow-shape': 'triangle'
+                                    }
+                                }
+                            ]
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+{% for edge in graph.edges.data() %}
+    { "data": { "source": {{ edge[0] }}, "target": {{ edge[1] }, "weight": {{ edge[2]['weight'] }} }},
+{% endfor %}

@@ -19,17 +19,15 @@ const ApexChart = () => {
     fetchData(); // Call the fetchData function when the component mounts
   }, []);
 
-  console.log("Server data:", serverData);
-
-  const CL = serverData ? serverData.A : 0;
-  const DL = serverData ? serverData.B : 0;
-  const NL = serverData ? serverData.C : 0;
-  const RL = serverData ? serverData.D : 0;
-  const ML = serverData ? serverData.E : 0;
-  const CH = serverData ? serverData.F : 0;
-  const DH = serverData ? serverData.G : 0;
-  const NH = serverData ? serverData.H : 0;
-  const RH = serverData ? serverData.I : 0;
+  const CL = serverData.A ? serverData.A : 0;
+  const DL = serverData.B ? serverData.B : 0;
+  const NL = serverData.C ? serverData.C : 0;
+  const RL = serverData.D ? serverData.D : 0;
+  const ML = serverData.E ? serverData.E : 0;
+  const CH = serverData.F ? serverData.F : 0;
+  const DH = serverData.G ? serverData.G : 0;
+  const NH = serverData.H ? serverData.H : 0;
+  const RH = serverData.I ? serverData.I : 0;
 
   const series = [
     {
