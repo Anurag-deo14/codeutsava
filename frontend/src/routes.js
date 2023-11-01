@@ -43,6 +43,7 @@ import Billing from "layouts/billing";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import Feedback from "layouts/feedback";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -79,6 +80,14 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
+  },
+  {
+    type: "collapse",
+    name: "Feedback",
+    key: "feedback",
+    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
+    route: "/feedback",
+    component: <Feedback />,
   },
   {
     type: "collapse",
