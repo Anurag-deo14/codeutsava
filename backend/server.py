@@ -163,11 +163,7 @@ def optimize_supply_chain():
             low_prod.append(0)
             high_prod.append(0)
     df_plot = pd.DataFrame({'Location': loc, 'Low': low_prod, 'High': high_prod})
-
-
-
-                
-                
+ 
     results = {
         "tcost" : total_costs.to_dict(),
         "dtimes" : delivery_times.to_dict(),
