@@ -101,7 +101,7 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 icon="south"
-                title="Low Production Area"
+                title="Low Yeild to Cost"
                 count={sumL}
                 percentage={{
                   color: "success",
@@ -116,7 +116,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="success"
                 icon="north"
-                title="High Production Area"
+                title="High Yeild to Cost"
                 count={sumH}
                 percentage={{
                   color: "success",
@@ -131,7 +131,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="primary"
                 icon="verified"
-                title="Total Production Area"
+                title="Total Yield"
                 count={sumT}
                 percentage={{
                   color: "success",

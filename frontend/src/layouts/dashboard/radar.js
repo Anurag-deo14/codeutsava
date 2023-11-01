@@ -86,7 +86,7 @@ const ApexChart = () => {
       },
     },
     title: {
-      text: "Radar Chart - Multi Series",
+      text: "Consumption Export Chart",
     },
     stroke: {
       width: 2,
