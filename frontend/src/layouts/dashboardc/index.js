@@ -39,6 +39,7 @@ import AC from "./apex";
 import Radar from "./radar";
 import PaymentMethod from "./PaymentMethod";
 import Radar1 from "./radar1";
+import DUM from "./dummy";
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
   const [serverData, setServerData] = useState({});
@@ -83,67 +84,6 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              {/* <ComplexStatisticsCard
-                color="dark"
-                icon="paid"
-                title="Total Estimated Cost"
-                count={ln}
-                percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
-                }}
-              /> */}
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              {/* <ComplexStatisticsCard
-                icon="south"
-                title="Low Production Area"
-                count={sumL}
-                percentage={{
-                  color: "success",
-                  amount: "+3%",
-                  label: "than last month",
-                }}
-              /> */}
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              {/* <ComplexStatisticsCard
-                color="success"
-                icon="north"
-                title="High Production Area"
-                count={sumH}
-                percentage={{
-                  color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
-                }}
-              /> */}
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              {/* <ComplexStatisticsCard
-                color="primary"
-                icon="verified"
-                title="Total Production Area"
-                count={sumT}
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Just updated",
-                }}
-              /> */}
-            </MDBox>
-          </Grid>
-        </Grid>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
@@ -165,8 +105,11 @@ function Dashboard() {
         </MDBox>
         <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} mt={6}>
-              <PaymentMethod />
+            <Grid item xs={12} md={6} lg={8}>
+              <DUM />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <OrdersOverview />
             </Grid>
           </Grid>
         </MDBox>
