@@ -23,6 +23,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
+import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Images
 import masterCardLogo from "assets/images/logos/mastercard.png";
@@ -30,72 +31,38 @@ import visaLogo from "assets/images/logos/visa.png";
 
 // Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
+import { useState } from "react";
 
 function PaymentMethod() {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
+  const [serverData, setServerData] = useState({});
+
+  const la = Math.ceil(serverData.total ? serverData.total : 0);
+  const ln = la.toLocaleString();
 
   return (
     <Card id="delete-account">
       <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
         <MDTypography variant="h6" fontWeight="medium">
-          Payment Method
+          Total Estimated Cost without Optimization
         </MDTypography>
-        <MDButton variant="gradient" color="dark">
-          <Icon sx={{ fontWeight: "bold" }}>add</Icon>
-          &nbsp;add new card
-        </MDButton>
       </MDBox>
       <MDBox p={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <MDBox
-              borderRadius="lg"
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              p={3}
-              sx={{
-                border: ({ borders: { borderWidth, borderColor } }) =>
-                  `${borderWidth[1]} solid ${borderColor}`,
-              }}
-            >
-              <MDBox component="img" src={masterCardLogo} alt="master card" width="10%" mr={2} />
-              <MDTypography variant="h6" fontWeight="medium">
-                ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;7852
-              </MDTypography>
-              <MDBox ml="auto" lineHeight={0} color={darkMode ? "white" : "dark"}>
-                <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
-                    edit
-                  </Icon>
-                </Tooltip>
-              </MDBox>
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <MDBox
-              borderRadius="lg"
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              p={3}
-              sx={{
-                border: ({ borders: { borderWidth, borderColor } }) =>
-                  `${borderWidth[1]} solid ${borderColor}`,
-              }}
-            >
-              <MDBox component="img" src={visaLogo} alt="master card" width="10%" mr={2} />
-              <MDTypography variant="h6" fontWeight="medium">
-                ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;5248
-              </MDTypography>
-              <MDBox ml="auto" lineHeight={0} color={darkMode ? "white" : "dark"}>
-                <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
-                    edit
-                  </Icon>
-                </Tooltip>
-              </MDBox>
+          <Grid item xs={12}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                color="dark"
+                icon="paid"
+                title="Total Estimated Cost"
+                count={ln + 12.5 * ln}
+                percentage={{
+                  color: "success",
+                  amount: "+12.5%",
+                  label: "than lask week",
+                }}
+              />
             </MDBox>
           </Grid>
         </Grid>
