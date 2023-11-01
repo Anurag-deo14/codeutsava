@@ -154,12 +154,20 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <AC />
+                <Card sx={{ height: "80%" }}>
+                  <MDBox pt={1} px={1}>
+                    <AC />
+                  </MDBox>
+                </Card>
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <Radar />
+                <Card sx={{ height: "80%" }}>
+                  <MDBox pt={1} px={1}>
+                    <Radar />
+                  </MDBox>
+                </Card>
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>

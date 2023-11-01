@@ -15,10 +15,8 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-
+import Card from "@mui/material/Card";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -88,17 +86,29 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <AC />
+                <Card sx={{ height: "80%" }}>
+                  <MDBox pt={1} px={1}>
+                    <AC />
+                  </MDBox>
+                </Card>
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <Radar />
+                <Card sx={{ height: "80%" }}>
+                  <MDBox pt={1} px={1}>
+                    <Radar />
+                  </MDBox>
+                </Card>
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <Radar1 />
+                <Card sx={{ height: "80%" }}>
+                  <MDBox pt={1} px={1}>
+                    <Radar1 />
+                  </MDBox>
+                </Card>
               </MDBox>
             </Grid>
           </Grid>
@@ -106,7 +116,11 @@ function Dashboard() {
         <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>
-              <DUM />
+              <Card sx={{ height: "80%" }}>
+                <MDBox pt={3} px={3}>
+                  <DUM />
+                </MDBox>
+              </Card>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <OrdersOverview />
