@@ -89,7 +89,7 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
@@ -151,26 +151,26 @@ function Dashboard() {
           </Grid>
         </Grid>
         <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6} lg={6}>
               <MDBox mb={3}>
-                <Card sx={{ height: "80%" }}>
+                <Card sx={{ height: "100%" }}>
                   <MDBox pt={1} px={1}>
                     <AC />
                   </MDBox>
                 </Card>
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} md={6} lg={6}>
               <MDBox mb={3}>
-                <Card sx={{ height: "80%" }}>
+                <Card sx={{ height: "100%" }}>
                   <MDBox pt={1} px={1}>
                     <Radar />
                   </MDBox>
                 </Card>
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            {/* <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="dark"
@@ -180,7 +180,7 @@ function Dashboard() {
                   chart={tasks}
                 />
               </MDBox>
-            </Grid>
+            </Grid> */}
           </Grid>
         </MDBox>
         <MDBox>

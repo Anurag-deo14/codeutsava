@@ -58,6 +58,7 @@ function Tables() {
               </MDBox>
               <MDBox pt={3}>
                 <iframe
+                  loading="lazy"
                   src="http://localhost:5000/"
                   title="Embedded Components"
                   width="90%"

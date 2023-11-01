@@ -83,12 +83,12 @@ function Dashboard() {
       <DashboardNavbar />
       <MDBox py={3}>
         <MDBox mt={4.5}>
-          <Grid container spacing={3}>
+          <Grid container spacing={1}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
                 <Card sx={{ height: "80%" }}>
                   <MDBox pt={1} px={1}>
-                    <AC />
+                    <Radar />
                   </MDBox>
                 </Card>
               </MDBox>
@@ -97,7 +97,7 @@ function Dashboard() {
               <MDBox mb={3}>
                 <Card sx={{ height: "80%" }}>
                   <MDBox pt={1} px={1}>
-                    <Radar />
+                    <AC />
                   </MDBox>
                 </Card>
               </MDBox>
