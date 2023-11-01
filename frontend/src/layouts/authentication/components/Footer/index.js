@@ -59,12 +59,12 @@ function Footer({ light }) {
             by
             <Link href="https://www.creative-tim.com/" target="_blank">
               <MDTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
-                &nbsp;Creative Tim&nbsp;
+                &nbsp;Super Talented Dorks&nbsp;
               </MDTypography>
             </Link>
             for a better web.
           </MDBox>
-          <MDBox
+          {/* <MDBox
             component="ul"
             sx={({ breakpoints }) => ({
               display: "flex",
@@ -125,7 +125,7 @@ function Footer({ light }) {
                 </MDTypography>
               </Link>
             </MDBox>
-          </MDBox>
+          </MDBox> */}
         </MDBox>
       </Container>
     </MDBox>
