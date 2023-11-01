@@ -119,25 +119,23 @@ const Feedback = () => {
             </Card>
           </Grid>
           <Grid item xs={12}>
-            <Card>
-              <MDBox display="flex" justifyContent="center" pt={5}>
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  style={{
-                    backgroundColor: "#2196f3",
-                    color: "white",
-                    padding: "10px 20px",
-                    border: "none",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                    fontSize: "16px",
-                  }}
-                >
-                  Submit Feedback
-                </button>
-              </MDBox>
-            </Card>
+            <MDBox display="flex" justifyContent="center" pt={5}>
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                style={{
+                  backgroundColor: "#2196f3",
+                  color: "white",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                }}
+              >
+                Submit Feedback
+              </button>
+            </MDBox>
           </Grid>
         </Grid>
       </MDBox>
