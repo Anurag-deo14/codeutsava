@@ -215,7 +215,7 @@ def generate_graph_image(G):
     edge_labels = {k: v for k, v in labels.items()}
     
     fig, ax = plt.subplots(figsize=(10, 10))
-    nx.draw(G, pos, with_labels=True, node_size=1000, font_size=10, font_color='black', node_color='#3caea3', font_weight='bold', ax=ax)
+    nx.draw(G, pos, with_labels=True, node_size=1000, font_size=10, font_color='black', node_color='#3C95EF', font_weight='bold', ax=ax)
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, ax=ax)
 
     buf = io.BytesIO()
