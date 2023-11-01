@@ -37,6 +37,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import AC from "./apex";
 import Radar from "./radar";
+import PaymentMethod from "./PaymentMethod";
 import Radar1 from "./radar1";
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -159,6 +160,13 @@ function Dashboard() {
               <MDBox mb={3}>
                 <Radar1 />
               </MDBox>
+            </Grid>
+          </Grid>
+        </MDBox>
+        <MDBox>
+          <Grid container spacing={3}>
+            <Grid item xs={12} mt={6}>
+              <PaymentMethod />
             </Grid>
           </Grid>
         </MDBox>
