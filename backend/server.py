@@ -172,6 +172,9 @@ def optimize_supply_chain():
                 
                 
     results = {
+        "tcost" : total_costs.to_dict(),
+        "dtimes" : delivery_times.to_dict(),
+        "demand" : demand.to_dict(),
         "capacity": df_capacity.to_dict(),
         "production": df_production.to_dict(),
         "plot": df_plot.to_dict(),

@@ -37,6 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
+import DashboardC from "layouts/dashboardc";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Profile from "layouts/profile";
@@ -47,6 +48,14 @@ import SignUp from "layouts/authentication/sign-up";
 import Icon from "@mui/material/Icon";
 
 const routes = [
+  {
+    type: "collapse",
+    name: "Production Analysis",
+    key: "dashboardc",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/problem",
+    component: <DashboardC />,
+  },
   {
     type: "collapse",
     name: "Dashboard",
