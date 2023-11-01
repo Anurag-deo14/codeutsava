@@ -52,18 +52,18 @@ function Tables() {
                 borderRadius="lg"
                 coloredShadow="info"
               >
-                <MDTypography variant="h6" color="white">
-                  Authors Table
+                <MDTypography variant="h3" color="white">
+                  Shortest Path Finder
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
+                <iframe
+                  src="http://localhost:5000/"
+                  title="Embedded Components"
+                  width="90%"
+                  height="900"
+                  style={{ marginLeft: 50, border: "none", marginTop: 0 }}
+                ></iframe>
               </MDBox>
             </Card>
           </Grid>
