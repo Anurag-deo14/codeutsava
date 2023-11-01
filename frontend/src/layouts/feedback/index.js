@@ -11,6 +11,7 @@ import DataTable from "examples/Tables/DataTable";
 const Feedback = () => {
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
@@ -22,8 +23,9 @@ const Feedback = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted feedback:", feedback);
-    console.log("Rating:", rating);
+    setFeedback("");
+    setRating(0);
+    setFormSubmitted(true);
   };
 
   return (
@@ -52,40 +54,26 @@ const Feedback = () => {
               </MDBox>
               <MDBox pt={3} px={4}>
                 <form onSubmit={handleSubmit}>
-                  <textarea
-                    id="feedback"
-                    name="feedback"
-                    value={feedback}
-                    onChange={handleFeedbackChange}
-                    placeholder="Your feedback here..."
-                    style={{
-                      width: "100%",
-                      padding: "12px",
-                      border: "1px solid #2196f3",
-                      borderRadius: "4px",
-                      boxSizing: "border-box",
-                      fontSize: "18px",
-                      lineHeight: "1.4",
-                      marginBottom: "10px",
-                      minHeight: "150px", // Adjust the height of the comment box
-                    }}
-                  ></textarea>
-                  <MDBox mb={2}>
-                    <button
-                      type="submit"
+                  <div style={{ display: "flex" }}>
+                    <textarea
+                      id="feedback"
+                      name="feedback"
+                      value={feedback}
+                      onChange={handleFeedbackChange}
+                      placeholder="Your feedback here..."
                       style={{
-                        backgroundColor: "#2196f3",
-                        color: "white",
-                        padding: "10px 20px",
-                        border: "none",
+                        flex: 1,
+                        padding: "12px",
+                        border: "1px solid #2196f3",
                         borderRadius: "4px",
-                        cursor: "pointer",
-                        fontSize: "16px",
+                        boxSizing: "border-box",
+                        fontSize: "18px",
+                        lineHeight: "1.4",
+                        marginBottom: "10px",
+                        minHeight: "150px",
                       }}
-                    >
-                      Submit Feedback
-                    </button>
-                  </MDBox>
+                    ></textarea>
+                  </div>
                 </form>
               </MDBox>
             </Card>
@@ -116,7 +104,7 @@ const Feedback = () => {
                     <span
                       key={i}
                       style={{
-                        fontSize: "48px", // Adjust the size of the stars
+                        fontSize: "48px",
                         color: ratingValue <= rating ? "#FFD700" : "#808080",
                         cursor: "pointer",
                         marginRight: "4px",
@@ -127,6 +115,27 @@ const Feedback = () => {
                     </span>
                   );
                 })}
+              </MDBox>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox display="flex" justifyContent="center" pt={5}>
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  style={{
+                    backgroundColor: "#2196f3",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: "none",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                  }}
+                >
+                  Submit Feedback
+                </button>
               </MDBox>
             </Card>
           </Grid>
