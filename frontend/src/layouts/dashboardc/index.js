@@ -115,15 +115,12 @@ function Dashboard() {
         </MDBox>
         <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-              <Card sx={{ height: "80%" }}>
+            <Grid item xs={12}>
+              <Card sx={{ height: "100%" }}>
                 <MDBox pt={3} px={3}>
                   <DUM />
                 </MDBox>
               </Card>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
             </Grid>
           </Grid>
         </MDBox>
