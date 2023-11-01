@@ -3,6 +3,7 @@ import pandas as pd
 from pulp import *
 import os
 from flask_cors import CORS
+import random
 
 app = Flask(__name__)
 CORS(app)
@@ -183,6 +184,15 @@ def optimize_supply_chain():
 
     return jsonify(results)
        
+@app.route('/data', methods=['GET'])
+def get_city_data():
+    # Generate random values for cities A to I
+    city_data = {}
+    for city_name in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']:
+        random_value = random.randint(25, 100)
+        city_data[city_name] = random_value
+
+    return jsonify(city_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
