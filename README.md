@@ -38,6 +38,121 @@ ATMS places a strong emphasis on sustainability by optimizing routes to reduce t
 
 The system generates comprehensive reports on transportation costs, helping stakeholders make informed decisions to further optimize the supply chain.
 
+### Cost and Production Analysis Parameters:
+
+1. **Travel Life of Food Item**:
+   - **Significance**: The shelf life of food items is crucial to ensure that products are delivered before they expire. It helps minimize food wastage and ensures the quality of products upon arrival.
+
+2. **Distance Between Cities**:
+   - **Significance**: The distance between cities directly affects transportation costs and delivery times. A shorter distance can reduce costs and decrease the risk of food spoilage.
+
+3. **Transport Cost**:
+   - **Significance**: Transport costs include expenses such as fuel, maintenance, and labor. Accurate calculation of transport costs is essential for cost optimization.
+
+4. **Demand in City**:
+   - **Significance**: Understanding the demand in each city helps allocate resources efficiently, ensuring that the right quantity of food is delivered to meet customer needs.
+
+5. **CO2 Emissions**:
+   - **Significance**: Monitoring and reducing carbon emissions is not only environmentally responsible but can also result in cost savings and support sustainable practices.
+
+6. **Fixed Cost of Operation in Each City**:
+   - **Significance**: Fixed costs include expenses like facility rent, utilities, and salaries. It's essential to consider these costs to determine the overall cost-effectiveness of operations in each city.
+
+7. **Storage Capacity of Cities**:
+   - **Significance**: Knowing the storage capacity of cities helps in managing inventory efficiently, preventing overstocking or understocking of food items.
+
+8. **Storage Costs**:
+   - **Significance**: Storage costs are a part of the overall operational costs. Proper storage management ensures the quality and safety of food items while minimizing unnecessary expenses.
+
+9. **Variable Costs**:
+   - **Significance**: Variable costs, such as packaging materials or fuel, directly impact the overall cost of transportation. Accurate tracking of these costs is crucial for cost optimization.
+
+### Route Analysis Parameters:
+
+1. **Traffic**:
+   - **Significance**: Traffic conditions can impact the delivery time and fuel consumption. Avoiding heavy traffic can save time and reduce operational costs.
+
+2. **Cost**:
+   - **Significance**: The cost of the route includes expenses like fuel and tolls. Choosing cost-effective routes is essential for reducing operational expenses.
+
+3. **Time of Travel**:
+   - **Significance**: The time of travel affects delivery schedules and can impact the freshness and quality of food items.
+
+4. **CO2 Emissions**:
+   - **Significance**: Reducing carbon emissions is environmentally responsible and can lead to cost savings through more efficient vehicle operation.
+
+5. **Proximity to Other Distributors**:
+   - **Significance**: Identifying the proximity to other distributors can help optimize routes by coordinating deliveries and sharing resources.
+
+6. **Quality of Distributor**:
+   - **Significance**: The quality of distributors can impact the reliability of the delivery network. Working with high-quality distributors can lead to better service.
+
+7. **Distributor Rating**:
+   - **Significance**: Evaluating distributor performance helps in selecting the most efficient and reliable partners for transportation.
+
+8. **Vehicle Condition**:
+   - **Significance**: Maintaining the vehicle in good condition is essential to prevent breakdowns and ensure timely deliveries.
+
+Consideration of these parameters in cost, production, and route analysis contributes to more efficient and cost-effective operations in the agri-food supply chain.
+
+### Cost and Production Analysis Parameters:
+
+1. **Travel Life of Food Item**:
+   - **Significance**: The shelf life of food items is crucial to ensure that products are delivered before they expire. It helps minimize food wastage and ensures the quality of products upon arrival.
+
+2. **Distance Between Cities**:
+   - **Significance**: The distance between cities directly affects transportation costs and delivery times. A shorter distance can reduce costs and decrease the risk of food spoilage.
+
+3. **Transport Cost**:
+   - **Significance**: Transport costs include expenses such as fuel, maintenance, and labor. Accurate calculation of transport costs is essential for cost optimization.
+
+4. **Demand in City**:
+   - **Significance**: Understanding the demand in each city helps allocate resources efficiently, ensuring that the right quantity of food is delivered to meet customer needs.
+
+5. **CO2 Emissions**:
+   - **Significance**: Monitoring and reducing carbon emissions is not only environmentally responsible but can also result in cost savings and support sustainable practices.
+
+6. **Fixed Cost of Operation in Each City**:
+   - **Significance**: Fixed costs include expenses like facility rent, utilities, and salaries. It's essential to consider these costs to determine the overall cost-effectiveness of operations in each city.
+
+7. **Storage Capacity of Cities**:
+   - **Significance**: Knowing the storage capacity of cities helps in managing inventory efficiently, preventing overstocking or understocking of food items.
+
+8. **Storage Costs**:
+   - **Significance**: Storage costs are a part of the overall operational costs. Proper storage management ensures the quality and safety of food items while minimizing unnecessary expenses.
+
+9. **Variable Costs**:
+   - **Significance**: Variable costs, such as packaging materials or fuel, directly impact the overall cost of transportation. Accurate tracking of these costs is crucial for cost optimization.
+
+### Route Analysis Parameters:
+
+1. **Traffic**:
+   - **Significance**: Traffic conditions can impact the delivery time and fuel consumption. Avoiding heavy traffic can save time and reduce operational costs.
+
+2. **Cost**:
+   - **Significance**: The cost of the route includes expenses like fuel and tolls. Choosing cost-effective routes is essential for reducing operational expenses.
+
+3. **Time of Travel**:
+   - **Significance**: The time of travel affects delivery schedules and can impact the freshness and quality of food items.
+
+4. **CO2 Emissions**:
+   - **Significance**: Reducing carbon emissions is environmentally responsible and can lead to cost savings through more efficient vehicle operation.
+
+5. **Proximity to Other Distributors**:
+   - **Significance**: Identifying the proximity to other distributors can help optimize routes by coordinating deliveries and sharing resources.
+
+6. **Quality of Distributor**:
+   - **Significance**: The quality of distributors can impact the reliability of the delivery network. Working with high-quality distributors can lead to better service.
+
+7. **Distributor Rating**:
+   - **Significance**: Evaluating distributor performance helps in selecting the most efficient and reliable partners for transportation.
+
+8. **Vehicle Condition**:
+   - **Significance**: Maintaining the vehicle in good condition is essential to prevent breakdowns and ensure timely deliveries.
+
+Consideration of these parameters in cost, production, and route analysis contributes to more efficient and cost-effective operations in the agri-food supply chain.
+
+
 ## Key Features
 
 - Demand analysis and cost minimization
@@ -123,11 +238,6 @@ For detailed instructions and troubleshooting, please refer to the project's [Ge
 
 ---
 
-## Contributing
-
-We welcome contributions from the open-source community. To contribute to the Advanced Transportation Management System, please follow our [Contribution Guidelines](/CONTRIBUTING.md).
-
----
 
 ## License
 
@@ -137,6 +247,6 @@ This project is licensed under the MIT License - see the [LICENSE](/LICENSE) fil
 
 Thank you for your interest in the Advanced Transportation Management System for the agri-food supply chain. We are excited to work together to solve the transportation challenges in this critical industry.
 
-For any questions, suggestions, or feedback, please [contact us](mailto:contact@atms-agrifood.com).
+For any questions, suggestions, or feedback, please [contact us](mailto:abhinav1483@gmail.com).
 
 Happy coding!
