@@ -38,12 +38,14 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
 import DashboardC from "layouts/dashboardc";
+import DashboardD from "layouts/dashboardo";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Feedback from "layouts/feedback";
+import Production from "layouts/Production";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -67,6 +69,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Real Time Changes",
+    key: "dashboardo",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/real-time-analysis",
+    component: <DashboardD />,
+  },
+  {
+    type: "collapse",
     name: "Transportation Analysis",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
@@ -80,6 +90,14 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
+  },
+  {
+    type: "collapse",
+    name: "Update Production",
+    key: "prodution",
+    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
+    route: "/updateproduction",
+    component: <Production />,
   },
   {
     type: "collapse",
