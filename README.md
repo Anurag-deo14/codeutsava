@@ -30,15 +30,11 @@ To ensure the optimal utilization of resources, ATMS starts by analyzing the cur
 
 ATMS suggests the best travel routes based on a multitude of factors, such as traffic conditions, distance, cost, and road quality parameters. Each potential route is assigned a risk factor to evaluate its viability. The system then minimizes the cost and selects the best path for transportation, taking into account all these factors. This ensures that goods are transported efficiently, and resources are used optimally.
 
-### 3. Real-time Tracking and Adaptation
-
-Our system includes real-time tracking capabilities, allowing stakeholders to monitor the transportation process. If unforeseen events or changes in circumstances occur, the system can adapt and suggest alternative routes or strategies to minimize disruptions and delays.
-
-### 4. Sustainability
+### 3. Sustainability
 
 ATMS places a strong emphasis on sustainability by optimizing routes to reduce the carbon footprint. This is not only cost-effective but also environmentally responsible, addressing the growing concern for eco-friendly transportation in the agri-food industry.
 
-### 5. Cost Analysis and Reporting
+### 4. Cost Analysis and Reporting
 
 The system generates comprehensive reports on transportation costs, helping stakeholders make informed decisions to further optimize the supply chain.
 
