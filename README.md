@@ -67,7 +67,7 @@ The system generates comprehensive reports on transportation costs, helping stak
 9. **Variable Costs**:
    - **Significance**: Variable costs, such as packaging materials or fuel, directly impact the overall cost of transportation. Accurate tracking of these costs is crucial for cost optimization.
 
-### Route Analysis Parameters:
+## Route Analysis Parameters:
 
 1. **Traffic**:
    - **Significance**: Traffic conditions can impact the delivery time and fuel consumption. Avoiding heavy traffic can save time and reduce operational costs.
@@ -123,35 +123,6 @@ Consideration of these parameters in cost, production, and route analysis contri
 
 9. **Variable Costs**:
    - **Significance**: Variable costs, such as packaging materials or fuel, directly impact the overall cost of transportation. Accurate tracking of these costs is crucial for cost optimization.
-
-### Route Analysis Parameters:
-
-1. **Traffic**:
-   - **Significance**: Traffic conditions can impact the delivery time and fuel consumption. Avoiding heavy traffic can save time and reduce operational costs.
-
-2. **Cost**:
-   - **Significance**: The cost of the route includes expenses like fuel and tolls. Choosing cost-effective routes is essential for reducing operational expenses.
-
-3. **Time of Travel**:
-   - **Significance**: The time of travel affects delivery schedules and can impact the freshness and quality of food items.
-
-4. **CO2 Emissions**:
-   - **Significance**: Reducing carbon emissions is environmentally responsible and can lead to cost savings through more efficient vehicle operation.
-
-5. **Proximity to Other Distributors**:
-   - **Significance**: Identifying the proximity to other distributors can help optimize routes by coordinating deliveries and sharing resources.
-
-6. **Quality of Distributor**:
-   - **Significance**: The quality of distributors can impact the reliability of the delivery network. Working with high-quality distributors can lead to better service.
-
-7. **Distributor Rating**:
-   - **Significance**: Evaluating distributor performance helps in selecting the most efficient and reliable partners for transportation.
-
-8. **Vehicle Condition**:
-   - **Significance**: Maintaining the vehicle in good condition is essential to prevent breakdowns and ensure timely deliveries.
-
-Consideration of these parameters in cost, production, and route analysis contributes to more efficient and cost-effective operations in the agri-food supply chain.
-
 
 ## Key Features
 
