@@ -15,11 +15,6 @@ CORS(app)
 
 @app.route('/optimize', methods=['GET'])
 def optimize_supply_chain():
-    
-
-    """## Importing the datasets:"""
-
-    
 
     freight_costs = pd.read_excel("freight_costs.xlsx", index_col = 0)
     var_costs = pd.read_excel("variable_costs.xlsx", index_col = 0)

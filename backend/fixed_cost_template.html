@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fixed Cost Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #2ecc71; /* Green background */
+            color: white;
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+        }
+
+        tr:hover {
+            background-color: #f2f2f2; /* Subtle hover effect */
+        }
+
+        td input[type="text"], td input[type="number"] {
+            border: none;
+            background-color: transparent;
+            border-bottom: 1px solid #ccc;
+            padding: 5px;
+            width: 100%;
+        }
+
+        td input[type="submit"] {
+            background-color: #2ecc71; /* Green button */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fixed Cost Data</h1>
+    <table>
+        <tr>
+            <th>City Name</th>
+            <th>Low Cost</th>
+            <th>High Cost</th>
+            <th>Action</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.cityname }}</td>
+            <td>{{ item.low }}</td>
+            <td>{{ item.high }}</td>
+            <td>
+                <form method="POST" action="/fixed_cost">
+                    <input type="hidden" name="cityname" value="{{ item.cityname }}">
+                    <input type="text" name="low" value="{{ item.low }}">
+                    <input type="text" name="high" value="{{ item.high }}">
+                    <button type="submit">Save</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
