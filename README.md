@@ -191,5 +191,3 @@ This project is licensed under the MIT License - see the [LICENSE](/LICENSE) fil
 Thank you for your interest in the Advanced Transportation Management System for the agri-food supply chain. We are excited to work together to solve the transportation challenges in this critical industry.
 
 For any questions, suggestions, or feedback, please [contact us](mailto:abhinav1483@gmail.com).
-
-Happy coding!
