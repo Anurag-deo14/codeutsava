@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory,send_file, render_template
+from flask import Flask,redirect, request, jsonify, send_from_directory,send_file, render_template
 import pandas as pd
 from pulp import *
 import os
@@ -9,50 +9,43 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import io
 import base64
+from concurrent.futures import ThreadPoolExecutor
+from supabase import create_client, Client
+from dotenv import load_dotenv
+load_dotenv()
+
+url: str = os.getenv("SUPABASE_URL")
+key: str = os.getenv("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
 app = Flask(__name__)
 CORS(app)
 
+def fetch_supabase_data(table_name):
+    data = pd.DataFrame(supabase.table(table_name).select("*").execute().data)
+    data.set_index("City", inplace=True)
+    data.sort_index(inplace=True)
+    return data
+            
 @app.route('/optimize', methods=['GET'])
 def optimize_supply_chain():
 
-    freight_costs = pd.read_excel("freight_costs.xlsx", index_col = 0)
-    var_costs = pd.read_excel("variable_costs.xlsx", index_col = 0)
-    stor_costs = pd.read_excel("Storage_costs.xlsx", index_col = 0)
+    tables_to_fetch = ['Transport', 'Variable', 'Storage', 'co2', 'Leadtime', 'Fixed', 'Capacity', 'Demand', 'Deadline']
 
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(fetch_supabase_data, tables_to_fetch))
 
-    carb_emissions = pd.read_excel("CO2_Emissions.xlsx", index_col = 0)
-
-
-    lead_time = pd.read_excel("Delivery_LeadTime.xlsx", index_col = 0)
-
-    total_costs = freight_costs/1000 + var_costs
-
-    fixed_costs = pd.read_excel("fixed_cost.xlsx", index_col = 0)
+    freight_costs, var_costs, stor_costs, carb_emissions, lead_time, fixed_costs, cap, demand, del_deadline = results
 
     total_fixed = fixed_costs + stor_costs
-
-    delivery_times = pd.read_excel("Delivery_LeadTime.xlsx", index_col = 0)
-
-
-    cap = pd.read_excel("capacity.xlsx", index_col = 0)
-
-
-    demand = pd.read_excel("demand.xlsx", index_col = 0)
-
-
-    Co2_dict = {'Delhi':10000000000,'Chennai':10000000000,'Mumbai':10000000000,'Nagpur':10000000000,'Raipur':10000000000}
-
-    Co2_Limits  = pd.DataFrame(Co2_dict.items(), columns = ['City', 'Max CO2 permitted (in kgs)'], )
-    Co2_Limits.set_index('City')
-
-    del_deadline = pd.read_excel("Delivery_Deadlines.xlsx", index_col = 0)
+    total_costs = freight_costs/1000 + var_costs
+    delivery_times = lead_time  
 
 
     """## Building the linear programming model from Pulp Library:"""
 
-    # Define Decision Variables through a list
-    loc = ['Delhi', 'Chennai', 'Mumbai', 'Nagpur', 'Raipur']
+    # Decision Variables 
+    loc = [ 'Chennai','Delhi', 'Mumbai', 'Nagpur', 'Raipur']
     size = ['Low', 'High']
 
     # Initialize Class
@@ -72,23 +65,18 @@ def optimize_supply_chain():
 
     # Add Constraints
     for j in loc:
-        model += lpSum([x[(i, j)] for i in loc]) == demand.loc[j,'Demand']
+        model += lpSum([x[(i, j)] for i in loc]) == demand.loc[j].iloc[0]
     for i in loc:
         model += lpSum([x[(i, j)] for j in loc]) <= lpSum([cap.loc[i,s]*y[(i,s)] * 1000 for s in size])
     for j in loc:
-        model += lpSum([carb_emissions.loc[i,j] * x[(i,j)] for i in loc]) <= [5000000000,5000000000,5000000000,5000000000,5000000000]
-
-    model += lpSum([delivery_times.loc[i,j] * z[(i,j)] for i in loc for j in loc]) <= (del_deadline.loc[i,j] for i in loc for j in loc)
-
-
-        # Define logical constraint: Add a logical constraint so that if the high capacity plant in Delhi is open, then a low capacity plant in Chennai is also opened.
-    # model += y[('Delhi','High_Cap')] <= y[('Chennai','Low_Cap')]
+        model += lpSum(carb_emissions.loc[i, j] * x[(i, j)] for i in loc for j in loc) <= 5000000000
+    model += lpSum([delivery_times.loc[i,j] * z[(i,j)] for i in loc for j in loc]) <= tuple(del_deadline.loc[i,j] for i in loc for j in loc)
 
     # Solve Model
     model.solve()
     total_money = value(model.objective)
     print("Total Costs = {:,} (₹/Month)".format(int(value(model.objective))))
-    print('\n' + "Status: {}".format(LpStatus[model.status]))
+    # print('\n' + "Status: {}".format(LpStatus[model.status]))
 
 
     # Dictionary to display the output data after optimization:
@@ -102,7 +90,7 @@ def optimize_supply_chain():
         else:
             name = v.name.replace('production__', '').replace('_', '')
             dict_prod[name] = v.varValue
-        print(name, "=", v.varValue)
+        # print(name, "=", v.varValue)
 
     """## Converting the results of the model to dataframes:"""
 
@@ -116,16 +104,14 @@ def optimize_supply_chain():
                 list_high.append(dict_plant[x])
     df_capacity = pd.DataFrame({'Location': loc, 'Low': list_low, 'High': list_high}).set_index('Location')
 
-
-
-    Delhi_List, Chennai_List, Mumbai_List, Nagpur_List, Raipur_List = [], [], [], [], []
+    Chennai_List,Delhi_List, Mumbai_List, Nagpur_List, Raipur_List = [], [], [], [], []
     for l in loc:
-        for var_costs in ['Delhi', 'Chennai', 'Mumbai', 'Nagpur', 'Raipur']:
+        for var_costs in ['Chennai','Delhi',  'Mumbai', 'Nagpur', 'Raipur']:
             x = "('{}','{}')".format(l, var_costs)
-            if var_costs == 'Delhi':
-                Delhi_List.append(dict_prod[x])
-            elif var_costs == 'Chennai':
+            if var_costs == 'Chennai':
                 Chennai_List.append(dict_prod[x])
+            elif var_costs == 'Delhi':
+                Delhi_List.append(dict_prod[x])
             elif var_costs == 'Mumbai':
                 Mumbai_List.append(dict_prod[x])
             elif var_costs == 'Nagpur':
@@ -133,12 +119,9 @@ def optimize_supply_chain():
             elif var_costs == 'Raipur':
                 Raipur_List.append(dict_prod[x])
 
-    df_production = pd.DataFrame({'Location': loc, 'Delhi': Delhi_List, 'Chennai': Chennai_List, 'Mumbai': Mumbai_List, 'Nagpur': Nagpur_List, 'Raipur': Raipur_List}).set_index('Location')
-
-
+    df_production = pd.DataFrame({'Location': loc, 'Chennai': Chennai_List,'Delhi': Delhi_List,  'Mumbai': Mumbai_List, 'Nagpur': Nagpur_List, 'Raipur': Raipur_List}).set_index('Location')
 
     df_production["Sum"] = df_production.sum(axis=1)
-
 
     sum_list = df_production['Sum']
 
@@ -170,7 +153,8 @@ def optimize_supply_chain():
         }
 
     return jsonify(results)
-       
+
+
 @app.route('/data', methods=['GET'])
 def get_city_data():
     # Generate random values for cities A to I
@@ -180,6 +164,8 @@ def get_city_data():
         city_data[city_name] = random_value
 
     return jsonify(city_data)
+
+
 
 def create_random_graph():
     G = nx.Graph()
@@ -196,6 +182,20 @@ graph = create_random_graph()
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/monthly_demand', methods=['GET', 'POST'])
+def monthly_demand():
+    if request.method == 'GET':
+        data = supabase.table('Demand').select('*').execute().data
+        return render_template('monthly_demand_template.html', data=data)
+
+    elif request.method == 'POST':
+        cityname = request.form.get('cityname')
+        new_demand = request.form.get('demand')
+
+        supabase.table('Demand').upsert({'City': cityname,'Demand': new_demand}).execute()  # Pass a single object as the first argument
+
+        return redirect('/monthly_demand')
 
 @app.route('/shortest_path', methods=['POST'])
 def shortest_path():

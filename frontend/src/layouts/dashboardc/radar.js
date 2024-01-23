@@ -98,7 +98,7 @@ const ApexChart = () => {
       size: 0,
     },
     xaxis: {
-      categories: ["Delhi", "Chennai", "Mumbai", "Nagpur", "Raipur"],
+      categories: ["Chennai", "Delhi", "Mumbai", "Nagpur", "Raipur"],
     },
   };
 

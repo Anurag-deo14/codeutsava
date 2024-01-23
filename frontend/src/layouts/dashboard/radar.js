@@ -53,12 +53,12 @@ const ApexChart = () => {
 
   const series = [
     {
-      name: "Delhi",
-      data: [DD, DC, DM, DN, DR],
-    },
-    {
       name: "Chennai",
       data: [CD, CC, CM, CN, CR],
+    },
+    {
+      name: "Delhi",
+      data: [DD, DC, DM, DN, DR],
     },
     {
       name: "Mumbai",
@@ -98,7 +98,7 @@ const ApexChart = () => {
       size: 0,
     },
     xaxis: {
-      categories: ["Delhi", "Chennai", "Mumbai", "Nagpur", "Raipur"],
+      categories: ["Chennai", "Delhi", "Mumbai", "Nagpur", "Raipur"],
     },
   };
 

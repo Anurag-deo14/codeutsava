@@ -74,7 +74,7 @@ const ApexChart = () => {
       text: "Demand",
     },
     xaxis: {
-      categories: ["Delhi", "Chennai", "Mumbai", "Nagpur", "Raipur"],
+      categories: ["Chennai", "Delhi", "Mumbai", "Nagpur", "Raipur"],
       labels: {
         formatter: function (val) {
           return val + "K";
